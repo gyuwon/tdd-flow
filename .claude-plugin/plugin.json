@@ -1,0 +1,9 @@
+{
+  "name": "tdd-flow",
+  "version": "0.1.0-alpha.1",
+  "description": "Orchestrates the entire TDD workflow end-to-end: scenario planning, test-first development, implementation, and refactoring — all driven by specialized agents.",
+  "author": {
+    "name": "Gyuwon Yi",
+    "email": "gyuwon@live.com"
+  }
+}
