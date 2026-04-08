@@ -10,11 +10,12 @@ Conduct the full TDD cycle by delegating each step to a specialized agent.
 ## Syntax
 
 ```
-/tdd-flow [feature: <description or url>]
+/tdd-flow [feature: <description or url>] [model: <sonnet|opus|haiku>]
 ```
 
 **Parameters:**
 - `feature` (optional): Description of the feature or URL of the issue. If not provided, use conversation context or ask the user.
+- `model` (optional): Model to use for all sub-agents (`sonnet`, `opus`, or `haiku`). When specified, pass this as the `model` parameter of every `Agent` tool call during Setup — this overrides each agent definition's default model. If omitted, each agent uses its own default model from its frontmatter.
 
 ## Role
 
@@ -65,7 +66,7 @@ Each sub-agent is spawned **once** with the `Agent` tool and then **reused** for
 
 ### Setup
 
-Spawn the four cycle agents **in parallel** using the `Agent` tool. Each agent receives an initial prompt that includes the scenario list (from `/tdd-list` output) and its role:
+Spawn the four cycle agents **in parallel** using the `Agent` tool. Each agent receives an initial prompt that includes the scenario list (from `/tdd-list` output) and its role. If the user specified a `model` parameter, pass it as the `model` field in every `Agent` tool call.
 
 ```
 Spawn all four in a single message (parallel Agent tool calls):
