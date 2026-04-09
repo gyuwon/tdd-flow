@@ -140,19 +140,13 @@ When all scenarios are marked `- [x]`:
    - Any issues encountered and how they were resolved
    - Any deferred items that were escalated
    - Suggested follow-up refactorings (if any)
-3. Present an **agent event log** — a table of every teammate interaction during the session:
+3. Present the **scenario list** with completion status (e.g., `- [x] scenario A`, `- [ ] scenario B`).
+4. Present a **resource usage report**:
+   - **Cycle duration**: wall-clock time from the start of the first scenario to the completion of the last scenario (excluding Planning and Setup).
+   - **Token usage**: total tokens consumed across all teammates during the cycle. Collect from each teammate's usage stats.
+   - **Scenarios**: total completed, total retries across all steps.
 
-| Scenario | Step | Teammate | Result |
-|----------|------|----------|--------|
-| 1 | 1 — Write test | test-writer | Failing test written |
-| 1 | 2 — Audit | critic | Needs improvement — assertion too broad |
-| 1 | 2 — Retry | test-writer | Fixed assertion |
-| 1 | 2 — Re-audit | critic | Pass |
-| ... | ... | ... | ... |
-
-   Record each row as the cycle progresses — do NOT reconstruct from memory at the end. After the table, include a one-line stat: total messages sent, total retries.
-
-4. Clean up the team.
+5. Clean up the team.
 
 ## Escalation Procedure
 
