@@ -1,13 +1,13 @@
 # TDD Flow
 
-A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin that orchestrates the entire TDD workflow end-to-end: scenario planning, test-first development, implementation, and refactoring — all driven by specialized agents.
+A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin that orchestrates the entire TDD workflow end-to-end: scenario planning, test-first development, implementation, and refactoring — all driven by an agent team.
 
 ## Skills
 
 | Command | Description |
 |---|---|
-| `/tdd-flow:tdd-flow` | Conduct the full TDD cycle by delegating to specialized agents |
-| `/tdd-flow:tdd-list` | Write a list of test scenarios for a feature |
+| `/tdd-flow:tdd-flow` | Conduct the full TDD cycle by delegating to specialized agent teammates |
+| `/tdd-flow:tdd-list` | Write a list of test scenarios for TDD |
 | `/tdd-flow:tdd-test` | Turn one scenario into a failing test |
 | `/tdd-flow:tdd-audit` | Evaluate whether a test sufficiently verifies its scenario |
 | `/tdd-flow:tdd-pass` | Write minimum code to pass the failing test |
@@ -16,7 +16,7 @@ A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin that orch
 
 ## Agents
 
-Sub-agents spawned by `/tdd-flow:tdd-flow` to handle each TDD step:
+Persistent teammates spawned by `/tdd-flow:tdd-flow` as an agent team. Each teammate retains full context across all messages within a TDD session.
 
 | Agent | Model | Role |
 |---|---|---|
@@ -26,6 +26,18 @@ Sub-agents spawned by `/tdd-flow:tdd-flow` to handle each TDD step:
 | `tdd-refactorer` | Sonnet | Improves code structure via `/tdd-refactor` |
 
 ## Usage
+
+### Prerequisites
+
+Agent teams must be enabled. Add to your Claude Code settings:
+
+```json
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  }
+}
+```
 
 ### Automated full TDD cycle
 
@@ -38,6 +50,24 @@ The `/tdd-flow:tdd-flow` skill orchestrates the entire cycle — planning scenar
 ```
 /tdd-flow:tdd-flow feature: https://myteam.atlassian.net/browse/PROJ-123
 ```
+
+Override the model for all teammates:
+
+```
+/tdd-flow:tdd-flow feature: https://github.com/owner/repo/issues/42 model: opus
+```
+
+### Architecture
+
+```
+/tdd-flow (team lead)
+├── /tdd-list (skill, invoked directly) → scenario list
+├── test-writer (teammate)  → one failing test via /tdd-test
+├── critic (teammate)       → test audit via /tdd-audit, excess check via /tdd-trim
+├── implementer (teammate)  → minimum code via /tdd-pass
+└── refactorer (teammate)   → design improvement via /tdd-refactor
+```
+
 ## Installation
 
 ```bash
