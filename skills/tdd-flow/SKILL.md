@@ -78,6 +78,8 @@ Create an agent team and spawn **4 teammates**, each based on an agent definitio
 
 Create an agent team and spawn all four teammates. Reference each agent type by name. If the user specified a `model` parameter, apply it to every teammate.
 
+**Do NOT include the scenario list in spawn prompts.** Teammates should receive only their role and project context (e.g., repo path, issue number, SUT location). Scenarios are provided one at a time during the Cycle phase.
+
 After all four teammates are ready, proceed to the Cycle phase.
 
 ### Cycle (autonomous)
@@ -90,7 +92,7 @@ For each scenario, execute **all 5 steps**. Do NOT skip any step.
 
 #### Step 1: Write a Failing Test
 
-- Message **test-writer**: the current scenario description.
+- Message **test-writer**: only the **current** scenario description. Never include other scenarios or the full scenario list.
 - If the test **passes unexpectedly**, escalate to user.
 
 #### Step 2: Audit the Test

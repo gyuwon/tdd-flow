@@ -52,9 +52,9 @@ Apply the following criteria:
 - If the test can verify behavior through return values or state, it should use stubs, not spies
 - Spies are acceptable only when the scenario's intent is to verify that a specific interaction occurred
 
-**Was exactly one test added for the scenario?**
-- Only one test method should be added per scenario
-- If multiple test methods were added, report **Needs improvement** — the test-writer must consolidate into a single test
+**Was exactly one test method added?**
+- Check `git diff` for new test methods — only one should have been added
+- If multiple test methods were added (even for different scenarios), report **Needs improvement** — the test-writer must remove all but the one for the current scenario
 
 ### 3. Report
 
