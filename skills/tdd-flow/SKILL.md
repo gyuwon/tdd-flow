@@ -156,6 +156,17 @@ When all scenarios are marked `- [x]`:
    - Any issues encountered and how they were resolved
    - Any deferred items that were escalated
    - Suggested follow-up refactorings (if any)
+3. Present an **agent event log** — a table of every agent interaction during the session:
+
+| Scenario | Step | Agent | Spawn/Reuse | Result |
+|----------|------|-------|-------------|--------|
+| 1 | 1 — Write test | test-writer | Spawn | Failing test written |
+| 1 | 2 — Audit | critic | Spawn | Needs improvement — assertion too broad |
+| 1 | 2 — Retry | test-writer | Reuse | Fixed assertion |
+| 1 | 2 — Re-audit | critic | Reuse | Pass |
+| ... | ... | ... | ... | ... |
+
+   Record each row as the cycle progresses — do NOT reconstruct from memory at the end. After the table, include a one-line stat: total spawns, total reuses, total retries.
 
 ## Escalation Procedure
 
