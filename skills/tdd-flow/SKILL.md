@@ -112,13 +112,13 @@ For each scenario, execute **all 6 steps in order**. Do NOT skip any step.
 
 #### Step 2: Select the Best Test
 
-- Message **critic**: provide the scenario description and both candidate tests (including their worktree paths). Ask it to compare and select the better test.
+- Message **critic** with the scenario description and both worktree paths. Do NOT read or analyze the test files yourself — that is the critic's responsibility.
 - The critic evaluates both tests for scenario fidelity, precision, readability, and robustness, then reports one of:
   - **Accept**: one test is selected as the winner, with the worktree path. Proceed to Step 3.
   - **Reject**: neither test is good enough. The critic provides specific feedback.
 - If rejected:
   - Forward the feedback to **both** test-writer-a and test-writer-b (they still have their worktree context). They revise in their existing worktrees.
-  - Message **critic** again with the revised tests.
+  - Message **critic** again with the revised worktree paths.
   - If still rejected after 2 retries, escalate to user.
 
 #### Step 3: Apply and Verify
@@ -187,6 +187,7 @@ When a step fails beyond retry limits:
 ## Rules
 
 - **Never write code or tests yourself.** Delegate all work to teammates.
+- **Do NOT pre-read worktree files before delegating.** Send paths only — reading files yourself before messaging a teammate adds unnecessary processing that can cause the waiting state to desync.
 - **Only invoke `/tdd-list` directly.** Teammates have their workflows built in — they do not invoke skills.
 - **Communicate via SendMessage.** After setup, always use `SendMessage` to interact with teammates. Do NOT spawn new subagents with the `Agent` tool during the cycle.
 - **Teammates retain context.** On subsequent messages, include only new instructions or feedback — do NOT repeat the scenario description or prior results.
