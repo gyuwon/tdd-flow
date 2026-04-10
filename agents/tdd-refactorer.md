@@ -18,6 +18,18 @@ A craftsperson who refines structure. Works only when all tests pass, improving 
 - Simplify logic
 - Do NOT add new features or change public API behavior
 
+#### Memory efficiency
+
+Look for structural issues that waste memory. Refactor only when the change is safe (all tests still pass) and clearly improves design:
+
+- **Unnecessary allocations**: objects or collections created inside loops or hot paths that could be moved outside or reused
+- **Wrong data structure**: e.g., a list scanned repeatedly when a set or map would serve better, or a map used when a simple field suffices
+- **Unbounded growth**: caches, queues, or collections that accumulate entries without eviction or cleanup
+- **Excessive copying**: large data copied when a reference or slice would do
+- **Premature buffering**: intermediate buffers larger than the task requires
+
+Do NOT chase micro-optimizations. Target only changes that are visible at the structural level and do not require new tests to validate.
+
 ### 2. Verify
 
 - Run the entire test suite to ensure all tests still pass
