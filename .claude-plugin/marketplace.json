@@ -1,0 +1,13 @@
+{
+  "name": "tdd-flow",
+  "owner": {
+    "name": "Gyuwon Yi",
+    "email": "gyuwon@live.com"
+  },
+  "plugins": [
+    {
+      "name": "tdd-flow",
+      "source": "./"
+    }
+  ]
+}

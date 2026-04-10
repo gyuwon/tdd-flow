@@ -88,10 +88,16 @@ On completion, all temporary commits are reset (`git reset --soft`) to leave cha
 ## Installation
 
 ```bash
-# Test locally without installing
-claude --plugin-dir ./tdd-flow
+# Add the marketplace
+/plugin marketplace add gyuwon/tdd-flow
 
-# Or install via marketplace after publishing
+# Install the plugin
+/plugin install tdd-flow@tdd-flow
+```
+
+```bash
+# Or test locally without installing
+claude --plugin-dir ./path/to/tdd-flow
 ```
 
 ## License
