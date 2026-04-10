@@ -42,6 +42,12 @@ The `/tdd-flow:tdd-flow` skill orchestrates the entire cycle — planning scenar
 /tdd-flow:tdd-flow feature: https://github.com/owner/repo/issues/42
 ```
 
+If the repository was cloned from GitHub, you can pass just the issue number:
+
+```
+/tdd-flow:tdd-flow feature: 346
+```
+
 ```
 /tdd-flow:tdd-flow feature: https://myteam.atlassian.net/browse/PROJ-123
 ```
