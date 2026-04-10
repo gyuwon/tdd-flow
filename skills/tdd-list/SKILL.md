@@ -25,7 +25,9 @@ Prepare a list of test scenarios to cover a feature.
 - Identify the system under test (sut)
 - Identify the behaviors to verify
 - Resolve ambiguities by asking the user
-- If the feature description already contains a test scenario list, ask the user whether to **skip** (use the existing list as-is) or **augment** (review and add missing scenarios)
+- If the feature description already contains a test scenario list:
+  - If some scenarios are marked done (`- [x]`), present the list to the user showing completion status and ask how to proceed: **resume** (continue from the first incomplete scenario), **reset** (uncheck all and start over), or **augment** (add missing scenarios to the existing list)
+  - If no scenarios are marked done, ask the user whether to **skip** (use the existing list as-is) or **augment** (review and add missing scenarios)
 
 ### 2. Write Scenarios
 
